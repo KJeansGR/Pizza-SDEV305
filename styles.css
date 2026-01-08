@@ -1,0 +1,28 @@
+html{
+    box-sizing: border-box;
+    background: peachpuff;
+}
+body{
+    margin: 0 auto;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+header{
+    padding: .5rem;
+    background: antiquewhite;
+    margin: 0 auto;
+    border-radius: 1rem;
+    width: 90%;
+}
+hr{
+    width: 90%;
+}
+main{
+    padding: .5rem;
+    border: .125rem, solid black;
+    border-radius: 1rem;
+    background-color: burlywood;
+}
+img{
+    padding: 0rem 1rem;
+}
