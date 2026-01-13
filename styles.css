@@ -24,14 +24,34 @@ main{
     background-color: burlywood;
 }
 img{
-    padding: 0rem 1rem;
+    padding: 1rem 1rem;
 }
 
-#contact-button{
+#contact-button, button{
     border: .125rem none green ;
     background-color: green;
     border-radius: .25rem;
     text-decoration: none;
     color: white;
     font-size: 1rem;
+}
+input{
+    width: fit-content;
+}
+legend{
+    color: darkgreen;
+    font-variant: small-caps;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+
+}
+fieldset{
+
+    padding: 1rem;
+    border: 1px solid darkgreen;
+    margin-bottom: 1.25rem;
+}
+label{
+    display: block;
+    padding: .125rem;
 }

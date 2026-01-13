@@ -14,15 +14,39 @@
         <main>
             <header>
                 <h1>PIZZAS</h1>
-                <img style="float: right;" src="images/pizzaguy.png" width="120px" height="120px" alt="image of a Pizza guy">
+                <h2>We Make Pizza</h2>
+                <img style="float: right;" src="images/pizzaguy.png" width="240px" height="240px" alt="image of a Pizza guy">
                 <hr>
+                <span>contact us</span> <br>
                 <a id="contact-button" href="#" role="button">Contact</a>
             </header>
-            <form><legend>ORDER</legend></form>
-            <ol> 
-                <li>Pizza Slice 1<img src="images/FaviconPizza.png" alt="an image of a pizza icon"></li>
-            </ol>
+            <br>
+            <form id="pizza-form" action="#" method="get">
+                <fieldset><Legend>Contact Info</Legend>
+                                <label for="fname">First Name</label>
+                <input type="text" name="fname" id="fname">
 
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname" id="lname">
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+
+                </fieldset>
+                <fieldset><Legend>Select PickUp or Delivery</Legend>
+                    <label for="pickUp-btn"></label>
+                    <input type="radio" name="method" value="PickUp" id="PickUp">Pick up
+                    <label for="delivery-btn"></label>
+                    <input type="radio" name="method" value="delivery-btn" id="delivery-btn">Delivery
+                </fieldset>
+                <fieldset><Legend>Select Toppings</Legend>
+
+                </fieldset>
+                <fieldset><Legend>Pizza Size</Legend>
+
+                </fieldset>
+                <button type="submit" id="order-button">Place Order</button>
+            </form>
         </main>
 </body>
 </html>
