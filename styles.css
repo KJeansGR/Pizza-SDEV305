@@ -26,3 +26,12 @@ main{
 img{
     padding: 0rem 1rem;
 }
+
+#contact-button{
+    border: .125rem none green ;
+    background-color: green;
+    border-radius: .25rem;
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+}
