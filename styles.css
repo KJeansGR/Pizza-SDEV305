@@ -2,6 +2,9 @@ html{
     box-sizing: border-box;
     background: peachpuff;
 }
+:root{
+    
+}
 body{
     margin: 0 auto;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -18,13 +21,15 @@ hr{
     width: 90%;
 }
 main{
-    padding: .5rem;
+    padding: .75rem;
     border: .125rem, solid black;
     border-radius: 1rem;
     background-color: burlywood;
+    margin: 1rem;
 }
 img{
     padding: 1rem 1rem;
+    border-radius: 1.5rem;
 }
 
 #contact-button, button{
@@ -54,4 +59,22 @@ fieldset{
 label{
     display: block;
     padding: .125rem;
+}
+a:hover, button:hover{
+    opacity: 50%;
+}
+button, input{
+    cursor: pointer;
+}
+input[type="text"],select{
+    width: fit-content;
+    border-radius: .25rem;
+}
+textarea{
+    width: 100%;
+}
+fieldset{
+    background-color: rgba(255, 218, 185, 0.299);
+    border-radius: .25rem;
+    padding: .5rem;
 }
