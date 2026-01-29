@@ -3,7 +3,7 @@ html{
     background: peachpuff;
 }
 :root{
-    
+    --outline-color: forestgreen;
 }
 body{
     margin: 0 auto;
@@ -22,7 +22,7 @@ hr{
 }
 main{
     padding: .75rem;
-    border: .125rem, solid black;
+    border: .125rem, solid var(--outline-color);
     border-radius: 1rem;
     background-color: burlywood;
     margin: 1rem;
@@ -33,12 +33,13 @@ img{
 }
 
 #contact-button, button{
-    border: .125rem none green ;
-    background-color: green;
+    border: .125rem none var(--outline-color) ;
+    background-color: var(--outline-color);
     border-radius: .25rem;
     text-decoration: none;
     color: white;
     font-size: 1rem;
+    padding: .125rem;
 }
 input{
     width: fit-content;
@@ -53,7 +54,7 @@ legend{
 fieldset{
 
     padding: 1rem;
-    border: 1px solid darkgreen;
+    border: 1px solid var(--outline-color);
     margin-bottom: 1.25rem;
 }
 label{
@@ -77,4 +78,9 @@ fieldset{
     background-color: rgba(255, 218, 185, 0.299);
     border-radius: .25rem;
     padding: .5rem;
+}
+
+.err{
+    display: none;
+    color: darkred;
 }

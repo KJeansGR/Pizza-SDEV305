@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="StyleSheet" href="styles.css"
+    <link rel="StyleSheet" href="public/styles/styles.css">
     <link rel = "icon" href="images/FaviconPizza.png">
+    <script src="pizza.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizza Assignment SDEV305</title>
 
@@ -15,7 +16,7 @@
             <header>
                 <h1>PIZZAS</h1>
                 <h2>We Make Pizza</h2>
-                <img style="float: right;" src="images/pizzaguy.png" width="300px" height="300px" alt="image of a Pizza guy">
+                <img style="float: right;" src="public/images/pizzaguy.png" width="300px" height="300px" alt="image of a Pizza guy">
                 <hr>
                 <span>contact us</span> <br>
                 <a id="contact-button" href="#" role="button">Contact</a>
@@ -25,28 +26,43 @@
 
             <form id="pizza-form" action="#" method="get">
                 <fieldset><Legend>Contact Info</Legend>
-                    <label for="fname">First Name</label>
+                    <label  for="fname">First Name 
+                        <span class="err" id="err-fname">
+                            first name required
+                        </span> </label>
                     <input type="text" name="fname" id="fname">
 
-                    <label for="lname">Last Name</label>
+                    <label for="lname">Last Name
+                            <span class="err" id="err-lname">
+                            last name required
+                        </span> </label>
+                    </label>
                     <input type="text" name="lname" id="lname">
 
-                    <label for="email">Email</label>
+                    <label for="email">Email
+                        <span class="err" id="err-email">
+                            email required
+                        </span> 
+                    </label>
                     <input type="email" name="email" id="email">
                 </fieldset>
 
                 <fieldset><Legend>Select PickUp or Delivery</Legend>
+                    <span class="err" id="err-method">
+                            Please Select Pickup or Delivery
+                    </span> 
+                    </label>
                     <label for="pickUp-btn"></label>
                     <input type="radio" name="method" value="PickUp" id="PickUp">Pick up
                     <label for="delivery-btn"></label>
-                    <input type="radio" name="method" value="delivery-btn" id="delivery-btn">Delivery
+                    <input type="radio" name="method" value="delivery" id="delivery">Delivery
                 </fieldset>
 
                 <fieldset><Legend>Select Toppings</Legend>
                     <label for="pepperoni"></label>
                         <input type="checkbox" id="pepperoni" name="toppings[]" value="pepperoni">
                         Pepperoni</input>
-
+                        <span>Validator.w3.org</span>
                     <label for="cheese"></label>
                         <input type="checkbox" id="cheese" name="toppings[]" value="cheese">
                         Cheese</input>
@@ -62,7 +78,7 @@
                         </select>
                 </fieldset>
 
-                <!-- Comment field-->
+                <!-- Cones -->
                 <label for="comment">Extra instructions</label>
                 <textarea rows="5" id="comment" name="comment"></textarea>
                 <br>
