@@ -84,3 +84,9 @@ fieldset{
     display: none;
     color: darkred;
 }
+
+
+nav *{
+    font-size: x-large;
+    text-decoration: none;
+}
