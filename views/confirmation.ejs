@@ -8,8 +8,13 @@
 </head>
 <body>
     <h1>THANK YOU FOR YOUR ORDER</h1>
+    <h2>Order Details</h2>
     <p>
+        <% Object.entries(order).forEach(([key,value])=>{ %>
+        <h3><%= (key) + " : " + (value) %></h3>
+        <% }) %>
         <a href="/">Place another order</a>
+
     </p>
 </body>
 </html>

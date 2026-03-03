@@ -1,5 +1,10 @@
 //import express module // this is why you add "type: module"
 import express from 'express';
+import mysql2 from 'mysql2';
+import dotenv from 'dotenv';
+
+//load environment variables
+dotenv.config();
 
 //create an express application
 const app = express();
@@ -7,60 +12,86 @@ const app = express();
 //define aport number where the servervwill listen
 const PORT = 3000;
 
-//MiddleWare that allows express 
-// //to read form data and store it in req.body
+//set ejs as view engine
+app.set('view engine', 'ejs');
+
+//create a pool of database connections
+const pool = mysql2.createPool({
+    host: process.env.DB_HOST,
+    user:  process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database:  process.env.DB_NAME,
+    port:  process.env.DB_PORT
+
+}).promise();
+
+//Database test root
+app.get('/db-test',async(req,res)=>{
+    try{
+        const pizza_orders = await pool.query('SELECT * FROM orders');
+        res.send(pizza_orders[0]);
+    }
+    catch(err){
+
+        console.log("ERROR: " + err)
+    }
+});
+//MiddleWare that allows express to read form data and store it in req.body
 app.use(express.urlencoded({extended: true}))
 //create temp array to store orders
-const orders = [];
 
 
 //define our main root ('/')
 app.get('/', (req,res)=>{
 
-    res.sendFile(`${import.meta.dirname}/views/home.html`);
+    res.render(`home`);
 });
 
 //Contact Route
 app.get('/contact-us', (req,res)=>{
 
-    res.sendFile(`${import.meta.dirname}/views/contact.html`);
+    res.render(`contact`);
+    //res.sendFile(`${import.meta.dirname}/views/contact.html`);
 });
 
 //Thankyou for order
-app.post('/submit-order', (req,res)=>{
+app.post('/submit-order', async(req,res)=>{
 
+    const order = req.body;
     //store data
-    const order ={
-        fname: req.body.fname,
-        lname: req.body.lname,
-        email: req.body.email,
-        method: req.body.method,
-        toppings: req.body.toppings || "none",
-        size:  req.body.size,
-        timestamp : new Date()
-    };
-
-    orders.push(order);
-    //res.send(orders); // displays the json of orders array
-    res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
+    const params =[
+        req.body.fname,
+        req.body.lname,
+        req.body.email,
+        req.body.size,
+        req.body.method,
+        req.body.toppings || "none"
+       // req.body.comment
+        // timestamp : new Date().toLocaleString()
+    ];
+console.log(params);
+    const sql = 'INSERT INTO orders (fname, lname, email,size, method,toppings)VALUES(?,?,?,?,?,?)';
+    const result = await pool.execute(sql, params);
+    res.render(`confirmation`, {order});
+    //res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
 });
 
 //admin route
-app.get('/admin', (req, res)=>{
+app.get('/admin', async (req, res)=>{
 
-    res.send(orders); // displays the json of orders array
+    //read all orders from the database
+    //newest first
+    const orders = await pool.query(
+        "SELECT * FROM orders" );
 
+    res.render(`admin`, {orders: orders[0]});
+            console.log(orders);
 })
-
-
-
 
 //Thankyou for order
 app.get('/thank-you', (req,res)=>{
-
-    res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
+    res.render(`confirmation`);
 });
-
 
 
 //start server, and listen on designated PORT

@@ -27,6 +27,7 @@ doc.onsubmit = () => {
         document.getElementById("err-method").style.display = "block";
         isValid = false;
     }
+    isValid = true;
     return isValid;
 }
 
