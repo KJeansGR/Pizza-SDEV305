@@ -25,7 +25,13 @@
             </header>
 
             <br>
+            <!-- display form errors if they exist -->
+             <% if (typeof errors != 'undefined'){ %>
+            <%errors.forEach(e =>{%>
+               <div><%= e %></div> 
+            <%})}; %>
 
+            
             <form id="pizza-form" action="/submit-order" method="post">
                 <fieldset><Legend>Contact Info</Legend>
                     <label  for="fname">First Name 
@@ -64,7 +70,6 @@
                     <label for="pepperoni"></label>
                         <input type="checkbox" id="pepperoni" name="toppings[]" value="pepperoni">
                         Pepperoni</input>
-                        <span>Validator.w3.org</span>
                     <label for="cheese"></label>
                         <input type="checkbox" id="cheese" name="toppings[]" value="cheese">
                         Cheese</input>

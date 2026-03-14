@@ -2,16 +2,14 @@
 import express from 'express';
 import mysql2 from 'mysql2';
 import dotenv from 'dotenv';
+import {validateForm} from './validation.js'
 
 //load environment variables
 dotenv.config();
-
 //create an express application
 const app = express();
-
 //define aport number where the servervwill listen
-const PORT = 3000;
-
+const PORT = 3009;
 //set ejs as view engine
 app.set('view engine', 'ejs');
 
@@ -58,6 +56,14 @@ app.get('/contact-us', (req,res)=>{
 app.post('/submit-order', async(req,res)=>{
 
     const order = req.body;
+
+    const valid = validateForm(order);
+    if(!valid.isValid){
+        console.log(valid);
+            res.render(`home`, {errors: valid.errors});
+        return;
+    }
+
     //store data
     const params =[
         req.body.fname,
@@ -69,7 +75,7 @@ app.post('/submit-order', async(req,res)=>{
        // req.body.comment
         // timestamp : new Date().toLocaleString()
     ];
-console.log(params);
+// console.log(params);
     const sql = 'INSERT INTO orders (fname, lname, email,size, method,toppings)VALUES(?,?,?,?,?,?)';
     const result = await pool.execute(sql, params);
     res.render(`confirmation`, {order});
